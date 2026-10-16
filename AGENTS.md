@@ -6,15 +6,23 @@ Estructura
 index.html: única página; enlaza css/style.css y js/main.js.
 css/style.css: todos los estilos.
 js/main.js: toda la lógica y los datos de productos.
-img/: fotos de los muebles.
 
 Datos
-Los productos viven en un array products al inicio de js/main.js.
-Cada producto tiene: id, name, category, width, height, depth (en cm), color, price (en Bs) e image.
-El HTML del catálogo se genera desde ese array. No escribir productos a mano en index.html.
+- Los productos viven en un array products al inicio de js/main.js.
+- Cada producto tiene: id, name, category, width, height, depth (en cm), color, price (en Bs) e image.
+- `image` es solo el nombre del archivo (ej. `closet-3-puertas.webp`).
+  La URL completa se arma con la constante `IMAGE_BASE_URL`, definida
+  al inicio de `main.js`. Las imágenes están en Cloudflare R2, no en el repositorio.
+- Si `image` está vacío o `IMAGE_BASE_URL` no está definida, mostrar un
+  bloque de color como marcador de posición.
+- Las imágenes llevan `alt` descriptivo y `loading="lazy"`.
+- El HTML del catálogo se genera desde ese array. No escribir productos a mano en index.html.
+
+
 Cómo ejecutar y probar
 No hay build. Servir con la extensión Live Server de VS Code, o con python -m http.server 5500 en la raíz (http://localhost:5500).
 No hay tests automáticos: al terminar cada cambio, indica qué debo probar manualmente en el navegador.
+
 
 Convenciones
 JavaScript moderno (const/let, funciones flecha). Un solo main.js; no usar import/export salvo que lo pida.
