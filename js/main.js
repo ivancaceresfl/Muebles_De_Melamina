@@ -1,4 +1,5 @@
 const IMAGE_BASE_URL = "";
+const WHATSAPP_NUMBER = "59177442225";
 
 const products = [
   {
@@ -91,6 +92,8 @@ const renderProducts = (items) => {
       const visual = imageUrl
         ? `<img class="product-card__visual" src="${imageUrl}" alt="${product.name} en color ${product.color}" loading="lazy">`
         : `<div class="product-card__visual product-card__placeholder" role="img" aria-label="Imagen de ${product.name} próximamente"></div>`;
+      const message = `Hola, me interesa el producto ${product.name} (${product.width} x ${product.height} x ${product.depth} cm). ¿Está disponible?`;
+      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
       return `
         <article class="product-card">
@@ -103,6 +106,12 @@ const renderProducts = (items) => {
               <p>Color: ${product.color}</p>
             </div>
             <p class="product-card__price">Bs ${priceFormatter.format(product.price)}</p>
+            <a
+              class="product-card__whatsapp"
+              href="${whatsappUrl}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Consultar por WhatsApp</a>
           </div>
         </article>
       `;

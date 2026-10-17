@@ -39,3 +39,5 @@ Borrar código que no sea parte de la tarea.
 Forma de trabajar
 Para cambios que toquen más de un archivo, propón un plan breve y espera mi confirmación.
 Cambios pequeños y enfocados. Al final, resume qué cambiaste y en qué archivos.
+La especificación del proyecto está en `docs/spec.md`; léela antes de
+proponer cambios grandes y no implementes nada que figure en "Fuera de alcance".

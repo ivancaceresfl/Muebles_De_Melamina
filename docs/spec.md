@@ -9,12 +9,12 @@ Clientes que buscan closets, cómodas, escritorios y muebles similares, principa
 Funciones actuales
 Catálogo de productos generado desde el array products.
 Filtro por categoría (botones generados desde los datos).
+Botón de WhatsApp en cada tarjeta, con un mensaje prellenado que incluye el nombre y las medidas del producto.
 Mejoras pendientes (ideas a decidir, ordenadas por prioridad)
-Imágenes desde Cloudflare R2, usando IMAGE_BASE_URL.
-Botón de WhatsApp en cada tarjeta, con un mensaje prellenado que incluya el nombre del producto.
-Búsqueda por texto en el catálogo.
-Cotizador por medidas.
-Sección de contacto y ubicación.
+1. Imágenes desde Cloudflare R2, usando IMAGE_BASE_URL.
+2. Búsqueda por texto en el catálogo.
+3. Cotizador por medidas.
+4. Sección de contacto y ubicación.
 Fuera de alcance
 Pagos en línea, carrito de compras y cuentas de usuario.
 Backend o base de datos: todo vive en el navegador.
