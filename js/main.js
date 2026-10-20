@@ -46,22 +46,26 @@ const priceFormatter = new Intl.NumberFormat("es-BO", {
 
 let activeCategory = null;
 
-const formatCategoryName = (category) => {
-  const readableCategory = category.trim();
-  return readableCategory.charAt(0).toLocaleUpperCase("es") + readableCategory.slice(1);
-};
+const normalizeCategory = (category) =>
+  typeof category === "string" ? category.trim().toLocaleLowerCase("es") : "";
 
 const renderCategoryFilters = () => {
   if (!categoryFilters) {
     return;
   }
 
-  const categories = [...new Set(products.map((product) => product.category))];
+  const categories = new Map();
+  products.forEach((product) => {
+    const value = normalizeCategory(product.category);
+    if (value && !categories.has(value)) {
+      categories.set(value, product.category.trim());
+    }
+  });
   const filters = [
     { value: null, label: "Todos" },
-    ...categories.map((category) => ({
-      value: category,
-      label: formatCategoryName(category),
+    ...[...categories].map(([value, label]) => ({
+      value,
+      label,
     })),
   ];
 
@@ -81,6 +85,12 @@ const renderCategoryFilters = () => {
 
 const renderProducts = (items) => {
   if (!productGrid) {
+    return;
+  }
+
+  if (items.length === 0) {
+    productGrid.innerHTML =
+      '<p class="catalog__empty">No hay productos disponibles en esta categoría.</p>';
     return;
   }
 
@@ -121,7 +131,7 @@ const renderProducts = (items) => {
 
 const renderCatalog = () => {
   const filteredProducts = activeCategory
-    ? products.filter((product) => product.category === activeCategory)
+    ? products.filter((product) => normalizeCategory(product.category) === activeCategory)
     : products;
 
   renderCategoryFilters();

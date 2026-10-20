@@ -127,6 +127,12 @@ a {
   gap: 1.25rem;
 }
 
+.catalog__empty {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--color-muted);
+}
+
 .product-card {
   overflow: hidden;
   border: 1px solid var(--color-border);
