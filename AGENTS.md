@@ -17,6 +17,8 @@ Datos
   bloque de color como marcador de posición.
 - Las imágenes llevan `alt` descriptivo y `loading="lazy"`.
 - El HTML del catálogo se genera desde ese array. No escribir productos a mano en index.html.
+- Las categorías se comparan normalizadas (sin espacios sobrantes y sin
+  distinguir mayúsculas). Nunca modificar los valores originales de `category`.
 
 
 Cómo ejecutar y probar

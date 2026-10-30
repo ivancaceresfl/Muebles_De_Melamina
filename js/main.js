@@ -39,15 +39,23 @@ const products = [
 
 const productGrid = document.querySelector("#product-grid");
 const categoryFilters = document.querySelector("#category-filters");
+const catalogSearch = document.querySelector("#catalog-search");
 const currentYear = document.querySelector("#current-year");
 const priceFormatter = new Intl.NumberFormat("es-BO", {
   maximumFractionDigits: 0,
 });
 
 let activeCategory = null;
+let searchQuery = "";
 
 const normalizeCategory = (category) =>
-  typeof category === "string" ? category.trim().toLocaleLowerCase("es") : "";
+  typeof category === "string"
+    ? category
+        .trim()
+        .toLocaleLowerCase("es")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+    : "";
 
 const renderCategoryFilters = () => {
   if (!categoryFilters) {
@@ -130,13 +138,22 @@ const renderProducts = (items) => {
 };
 
 const renderCatalog = () => {
-  const filteredProducts = activeCategory
-    ? products.filter((product) => normalizeCategory(product.category) === activeCategory)
-    : products;
+  const filteredProducts = products.filter((product) => {
+    const matchesCategory =
+      !activeCategory || normalizeCategory(product.category) === activeCategory;
+    const matchesSearch =
+      !searchQuery || normalizeCategory(product.name).includes(searchQuery);
+    return matchesCategory && matchesSearch;
+  });
 
   renderCategoryFilters();
   renderProducts(filteredProducts);
 };
+
+catalogSearch?.addEventListener("input", (event) => {
+  searchQuery = normalizeCategory(event.target.value);
+  renderCatalog();
+});
 
 categoryFilters?.addEventListener("click", (event) => {
   const target = event.target;

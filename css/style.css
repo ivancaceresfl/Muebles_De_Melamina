@@ -88,6 +88,35 @@ a {
   color: var(--color-muted);
 }
 
+.catalog__search {
+  display: grid;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.catalog__search-label {
+  color: var(--color-text);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.catalog__search-input {
+  width: 100%;
+  min-height: 2.9rem;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.45rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+}
+
+.catalog__search-input:focus-visible {
+  border-color: var(--color-primary);
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
 .catalog__filters {
   display: flex;
   flex-wrap: wrap;
@@ -239,6 +268,11 @@ a {
 
   .catalog {
     padding-top: 4rem;
+  }
+
+  .catalog__search {
+    max-width: 28rem;
+    margin-bottom: 1.25rem;
   }
 
   .product-grid {
