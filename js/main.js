@@ -41,6 +41,7 @@ const productGrid = document.querySelector("#product-grid");
 const categoryFilters = document.querySelector("#category-filters");
 const catalogSearch = document.querySelector("#catalog-search");
 const currentYear = document.querySelector("#current-year");
+const contactWhatsapp = document.querySelector("#contact-whatsapp");
 const priceFormatter = new Intl.NumberFormat("es-BO", {
   maximumFractionDigits: 0,
 });
@@ -56,6 +57,9 @@ const normalizeCategory = (category) =>
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
     : "";
+
+const createWhatsAppUrl = (message) =>
+  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
 const renderCategoryFilters = () => {
   if (!categoryFilters) {
@@ -111,7 +115,7 @@ const renderProducts = (items) => {
         ? `<img class="product-card__visual" src="${imageUrl}" alt="${product.name} en color ${product.color}" loading="lazy">`
         : `<div class="product-card__visual product-card__placeholder" role="img" aria-label="Imagen de ${product.name} próximamente"></div>`;
       const message = `Hola, me interesa el producto ${product.name} (${product.width} x ${product.height} x ${product.depth} cm). ¿Está disponible?`;
-      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      const whatsappUrl = createWhatsAppUrl(message);
 
       return `
         <article class="product-card">
@@ -166,6 +170,10 @@ categoryFilters?.addEventListener("click", (event) => {
 });
 
 renderCatalog();
+
+if (contactWhatsapp) {
+  contactWhatsapp.href = createWhatsAppUrl("Hola, quisiera información sobre sus muebles.");
+}
 
 if (currentYear) {
   currentYear.textContent = new Date().getFullYear();
