@@ -8,6 +8,20 @@
       content="Muebles de melamina funcionales para cada espacio de tu hogar."
     >
     <title>Muebles Melamina | Muebles para tu hogar</title>
+    <!-- Mantener "muebles-theme" sincronizada con la clave de js/main.js. -->
+    <script>
+      try {
+        const savedTheme = localStorage.getItem("muebles-theme");
+        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+        document.documentElement.dataset.theme =
+          savedTheme === "dark" || savedTheme === "light" ? savedTheme : systemTheme;
+      } catch {
+        document.documentElement.dataset.theme =
+          window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+    </script>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/main.js" defer></script>
   </head>
@@ -16,6 +30,13 @@
       <div class="site-header__content">
         <a class="site-header__brand" href="#inicio">Muebles Melamina</a>
         <p class="site-header__tagline">Diseño y funcionalidad para tu hogar</p>
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Cambiar a tema oscuro"
+          aria-pressed="false"
+        >Tema oscuro</button>
       </div>
     </header>
 

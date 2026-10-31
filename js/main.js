@@ -1,5 +1,7 @@
 const IMAGE_BASE_URL = "";
 const WHATSAPP_NUMBER = "59177442225";
+// Keep this key in sync with the inline theme initializer in index.html.
+const THEME_STORAGE_KEY = "muebles-theme";
 
 const products = [
   {
@@ -11,7 +13,7 @@ const products = [
     depth: 50,
     color: "Roble claro",
     price: 1850,
-    image: "closet-3-puertas.webp",
+    image: "https://res.cloudinary.com/pbfuzqch/image/upload/v1793444411/Closet.jpg",
   },
   {
     id: "comoda-4-cajones",
@@ -22,7 +24,7 @@ const products = [
     depth: 40,
     color: "Blanco",
     price: 950,
-    image: "comoda-4-cajones.webp",
+    image: "https://res.cloudinary.com/pbfuzqch/image/upload/v1793444411/comoda.jpg",
   },
   {
     id: "escritorio-moderno",
@@ -33,7 +35,21 @@ const products = [
     depth: 55,
     color: "Gris y roble",
     price: 1200,
-    image: "escritorio-moderno.webp",
+    image: "https://res.cloudinary.com/pbfuzqch/image/upload/v1793444411/Escritorio.jpg",
+  },
+  {
+    id: "Cocina",
+    name: "Cocina luces led",
+    category: "Cocinas",
+    width: 120,
+    height: 75,
+    depth: 55,
+    color: "Gris y roble",
+    price: 1200,
+    image: ["https://res.cloudinary.com/pbfuzqch/image/upload/v1793444122/Cocina.jpg",
+            "https://res.cloudinary.com/pbfuzqch/image/upload/v1793444411/Especiero.jpg",
+            "https://res.cloudinary.com/pbfuzqch/image/upload/v1793444411/Isla.jpg"
+    ]
   },
 ];
 
@@ -42,12 +58,41 @@ const categoryFilters = document.querySelector("#category-filters");
 const catalogSearch = document.querySelector("#catalog-search");
 const currentYear = document.querySelector("#current-year");
 const contactWhatsapp = document.querySelector("#contact-whatsapp");
+const themeToggle = document.querySelector("#theme-toggle");
 const priceFormatter = new Intl.NumberFormat("es-BO", {
   maximumFractionDigits: 0,
 });
 
 let activeCategory = null;
 let searchQuery = "";
+
+const setTheme = (theme) => {
+  const isDark = theme === "dark";
+  document.documentElement.dataset.theme = isDark ? "dark" : "light";
+
+  if (themeToggle) {
+    themeToggle.setAttribute("aria-pressed", String(isDark));
+    themeToggle.setAttribute(
+      "aria-label",
+      `Cambiar a tema ${isDark ? "claro" : "oscuro"}`,
+    );
+    themeToggle.textContent = `Tema ${isDark ? "claro" : "oscuro"}`;
+  }
+};
+
+setTheme(document.documentElement.dataset.theme === "dark" ? "dark" : "light");
+
+themeToggle?.addEventListener("click", () => {
+  const nextTheme =
+    document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  setTheme(nextTheme);
+
+  try {
+    localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+  } catch (error) {
+    console.warn("No se pudo guardar la preferencia de tema.", error);
+  }
+});
 
 const normalizeCategory = (category) =>
   typeof category === "string"

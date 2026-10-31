@@ -18,11 +18,21 @@ Mejoras pendientes (ideas a decidir, ordenadas por prioridad)
 2. Búsqueda por texto en el catálogo.
 3. Cotizador por medidas.
 
+Diseño
+1. Estilo elegante y minimalista en blanco y negro, con un solo color de acento.
+2. Modo claro y modo oscuro, con un botón para alternar.
+3. Primera visita: sigue la preferencia del sistema del usuario. Después
+  se recuerda su elección.
+4. Tipografía: fuentes del sistema, sin fuentes externas.
+5. Todos los colores salen de variables CSS en :root.
+
 Fuera de alcance
 Pagos en línea, carrito de compras y cuentas de usuario.
 Backend o base de datos: todo vive en el navegador.
+
 Contacto
 WhatsApp: 77442225
+
 Decisiones tomadas
 HTML, CSS y JavaScript puros, sin frameworks ni build.
 Imágenes alojadas en Cloudflare R2, no en el repositorio.
