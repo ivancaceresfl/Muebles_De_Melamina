@@ -106,6 +106,61 @@ const normalizeCategory = (category) =>
 const createWhatsAppUrl = (message) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
+const getProductImageUrl = (image) => {
+  const coverImage = Array.isArray(image) ? image[0] : image;
+  if (typeof coverImage !== "string") {
+    return "";
+  }
+
+  const trimmedImage = coverImage.trim();
+  if (/^https?:\/\//i.test(trimmedImage)) {
+    return trimmedImage;
+  }
+
+  const baseUrl =
+    typeof IMAGE_BASE_URL === "string"
+      ? IMAGE_BASE_URL.trim().replace(/\/+$/, "")
+      : "";
+  const isValidFilename =
+    trimmedImage &&
+    trimmedImage !== "." &&
+    trimmedImage !== ".." &&
+    !/[\u0000-\u001f\u007f\\/?#]/.test(trimmedImage);
+
+  return baseUrl && isValidFilename ? `${baseUrl}/${trimmedImage}` : "";
+};
+
+productGrid?.addEventListener(
+  "error",
+  (event) => {
+    const image = event.target;
+    if (
+      !(image instanceof HTMLImageElement) ||
+      !image.classList.contains("product-card__visual")
+    ) {
+      return;
+    }
+
+    const productName = image
+      .closest(".product-card")
+      ?.querySelector(".product-card__name")
+      ?.textContent?.trim();
+    if (!productName) {
+      return;
+    }
+
+    const placeholder = document.createElement("div");
+    placeholder.className = "product-card__visual product-card__placeholder";
+    placeholder.setAttribute("role", "img");
+    placeholder.setAttribute(
+      "aria-label",
+      `Imagen de ${productName} próximamente`,
+    );
+    image.replaceWith(placeholder);
+  },
+  true,
+);
+
 const renderCategoryFilters = () => {
   if (!categoryFilters) {
     return;
@@ -153,9 +208,7 @@ const renderProducts = (items) => {
 
   productGrid.innerHTML = items
     .map((product) => {
-      const imageUrl = IMAGE_BASE_URL
-        ? `${IMAGE_BASE_URL.replace(/\/$/, "")}/${product.image}`
-        : "";
+      const imageUrl = getProductImageUrl(product.image);
       const visual = imageUrl
         ? `<img class="product-card__visual" src="${imageUrl}" alt="${product.name} en color ${product.color}" loading="lazy">`
         : `<div class="product-card__visual product-card__placeholder" role="img" aria-label="Imagen de ${product.name} próximamente"></div>`;

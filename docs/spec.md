@@ -11,10 +11,11 @@ Funciones actuales
 2. Filtro por categoría (botones generados desde los datos).
 3. Botón de WhatsApp en cada tarjeta, con un mensaje prellenado que incluye el nombre y las medidas del producto.
 4. Sección de contacto y ubicación.
+5. Tema claro y oscuro
 
 
 Mejoras pendientes (ideas a decidir, ordenadas por prioridad)
-1. Imágenes desde Cloudflare R2, usando IMAGE_BASE_URL.
+1. Imágenes desde Cloudinary, usando IMAGE_BASE_URL.
 2. Búsqueda por texto en el catálogo.
 3. Cotizador por medidas.
 

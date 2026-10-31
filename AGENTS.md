@@ -12,7 +12,7 @@ Datos
 - Cada producto tiene: id, name, category, width, height, depth (en cm), color, price (en Bs) e image.
 - `image` es solo el nombre del archivo (ej. `closet-3-puertas.webp`).
   La URL completa se arma con la constante `IMAGE_BASE_URL`, definida
-  al inicio de `main.js`. Las imágenes están en Cloudflare R2, no en el repositorio.
+  al inicio de `main.js`. Las imágenes están en Cloudinary, no en el repositorio.
 - Si `image` está vacío o `IMAGE_BASE_URL` no está definida, mostrar un
   bloque de color como marcador de posición.
 - Las imágenes llevan `alt` descriptivo y `loading="lazy"`.
@@ -27,11 +27,14 @@ No hay tests automáticos: al terminar cada cambio, indica qué debo probar manu
 
 
 Convenciones
-JavaScript moderno (const/let, funciones flecha). Un solo main.js; no usar import/export salvo que lo pida.
-Código (variables, funciones) en inglés; textos visibles en español.
-Precios en bolivianos (Bs) y medidas en centímetros.
-CSS: clases en kebab-case, colores en variables CSS dentro de :root.
-Diseño responsive, mobile-first. HTML semántico, alt en imágenes.
+- JavaScript moderno (const/let, funciones flecha). Un solo main.js; no usar import/export  salvo que lo pida.
+- Código (variables, funciones) en inglés; textos visibles en español.
+- Precios en bolivianos (Bs) y medidas en centímetros.
+- CSS: clases en kebab-case, colores en variables CSS dentro de :root.
+- Diseño responsive, mobile-first. HTML semántico, alt en imágenes.
+- El tema se guarda en la clave `muebles-theme` de localStorage; no usar otra.
+- Los colores solo se definen como variables en `:root` y `:root[data-theme="dark"]`.
+  Nunca escribir colores a mano en otras reglas.
 
 Límites (pregunta antes de hacerlo)
 Instalar librerías o añadir scripts externos (CDN incluidos).
