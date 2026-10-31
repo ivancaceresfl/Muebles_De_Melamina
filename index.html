@@ -103,6 +103,41 @@
       </section>
     </main>
 
+    <dialog
+      class="product-gallery"
+      id="product-gallery"
+      aria-labelledby="product-gallery-title"
+    >
+      <div class="product-gallery__content">
+        <header class="product-gallery__header">
+          <h2 class="product-gallery__title" id="product-gallery-title"></h2>
+          <button class="product-gallery__close" id="product-gallery-close" type="button">
+            Cerrar
+          </button>
+        </header>
+        <div class="product-gallery__media">
+          <img
+            class="product-gallery__image is-hidden"
+            id="product-gallery-image"
+            alt=""
+            loading="lazy"
+          >
+          <div
+            class="product-gallery__placeholder product-card__placeholder is-hidden"
+            id="product-gallery-placeholder"
+            role="img"
+            aria-label="Imagen próximamente"
+          ></div>
+        </div>
+        <div
+          class="product-gallery__thumbnails"
+          id="product-gallery-thumbnails"
+          role="group"
+          aria-label="Fotos del producto"
+        ></div>
+      </div>
+    </dialog>
+
     <footer class="site-footer">
       <p>&copy; <span id="current-year"></span> Muebles Melamina. Todos los derechos reservados.</p>
     </footer>

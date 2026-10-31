@@ -12,6 +12,16 @@ Funciones actuales
 3. Botón de WhatsApp en cada tarjeta, con un mensaje prellenado que incluye el nombre y las medidas del producto.
 4. Sección de contacto y ubicación.
 5. Tema claro y oscuro
+## Galería de imágenes por producto (modal)
+- Las tarjetas muestran solo la foto de portada. Si el producto tiene varias
+  fotos, una etiqueta lo indica ("3 fotos").
+- Al pulsar la foto o el nombre de un producto se abre un modal con la foto
+  principal en grande y, si hay más de una, las demás como miniaturas debajo.
+  Al pulsar una miniatura, esa pasa a ser la principal.
+- El modal se cierra con el botón "Cerrar", con la tecla Esc o pulsando fuera.
+- El botón de WhatsApp de la tarjeta sigue funcionando sin abrir el modal.
+- Fuera de alcance por ahora: flechas para pasar de foto, deslizar con el
+  dedo y zoom.
 
 
 Mejoras pendientes (ideas a decidir, ordenadas por prioridad)
